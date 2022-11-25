@@ -1,7 +1,5 @@
 const express = require('express');
 const { PORT } = require('./config');
-// const { databaseConnection } = require('./database');
-
 const expressApp = require('./express-app');
 
 const errorHandler = require('./utils/errors');
@@ -9,7 +7,8 @@ const errorHandler = require('./utils/errors');
 async function StartServer() {
   const app = express();
 
-  // await databaseConnection();
+  // database Connection
+  require('./database/connection');
 
   // catch all errors
   errorHandler(app);
