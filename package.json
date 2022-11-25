@@ -1,0 +1,28 @@
+{
+  "name": "product-catalogue",
+  "version": "1.0.0",
+  "description": "A simple catalogue of products that can be accesses by rest api.",
+  "main": "index.js",
+  "scripts": {
+    "start": "set NODE_ENV=prod&& nodemon src/index.js",
+    "dev": "set NODE_ENV=dev&& nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyajitnayk/product-catalogue.git"
+  },
+  "keywords": [],
+  "author": "Satyajit Nayak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyajitnayk/product-catalogue/issues"
+  },
+  "homepage": "https://github.com/satyajitnayk/product-catalogue#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
