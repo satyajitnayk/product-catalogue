@@ -3,18 +3,23 @@ const {
   DATABASE_HOST,
   DATABASE_PASSWORD,
   DATABASE_USERNAME,
+  DATABASE_PORT,
 } = require('../config');
 
-const sequelize = new Sequelize(
-  'product_catalogues',
-  DATABASE_USERNAME,
-  DATABASE_PASSWORD,
-  {
-    host: DATABASE_HOST,
-    dialect: 'mysql',
-    operatorsAlias: false,
-  }
-);
+const sequelize = new Sequelize({
+  database: 'blog_db',
+  username: DATABASE_USERNAME,
+  password: DATABASE_PASSWORD,
+  host: DATABASE_HOST,
+  port: DATABASE_PORT,
+  dialect: 'mysql',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
-module.exports = sequelize;
 global.sequelize = sequelize;
+module.exports = sequelize;

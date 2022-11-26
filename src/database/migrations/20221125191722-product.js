@@ -21,8 +21,16 @@ module.exports = {
         allowNull: false,
       },
       price: Sequelize.FLOAT,
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('NOW()'),
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('NOW()'),
+      },
     });
   },
 
