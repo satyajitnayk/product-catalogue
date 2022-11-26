@@ -1,12 +1,12 @@
 const { ProductCategoryModel, ProductModel } = require('../models');
-const {
-  APIError,
-  AuthorizationError,
-  NotFoundError,
-  ValidationError,
-} = require('../../utils/errors/app-errors');
 
 class ProductRepository {
+  async getAllProducts() {
+    const products = await ProductModel.findAll();
+
+    return products;
+  }
+
   async createProduct({
     categoryId,
     productName,
