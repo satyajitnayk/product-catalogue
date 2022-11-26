@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const sequelize = require('../connection');
 
 module.exports = sequelize.define('ProductCategory', {
   category_id: {
