@@ -30,11 +30,11 @@ class ProductService {
     return allProducts;
   }
 
-  async createProduct({ category_id, product_name, details, price }) {
+  async createProduct({ categoryId, productName, details, price }) {
     // TODO: Validate inputs
     const productResult = await this.repository.createProduct({
-      categoryId: category_id,
-      productName: product_name,
+      categoryId: categoryId,
+      productName: productName,
       productDetails: details,
       productPrice: price,
     });
@@ -83,17 +83,11 @@ class ProductService {
     return allProducts;
   }
 
-  async updateProduct({
-    product_id,
-    category_id,
-    product_name,
-    details,
-    price,
-  }) {
+  async updateProduct({ productId, categoryId, productName, details, price }) {
     const updatedProduct = await this.repository.updateProduct({
-      productId: product_id,
-      categoryId: category_id,
-      productName: product_name,
+      productId: productId,
+      categoryId: categoryId,
+      productName: productName,
       productDetails: details,
       productPrice: price,
     });
