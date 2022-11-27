@@ -1,4 +1,8 @@
 const ProductCategoryservice = require('../services/product-category-service');
+const {
+  createCategoryValidator,
+  updateCategoryValidator,
+} = require('./validations');
 
 module.exports = (app) => {
   const service = new ProductCategoryservice();
@@ -17,18 +21,18 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.post('/categories', async (req, res, next) => {
-    const { catgoryName, categoryDetails } = req.body;
+  app.post('/categories', createCategoryValidator, async (req, res, next) => {
+    const { categoryName, categoryDetails } = req.body;
 
     const data = await service.createCategory({
       categoryDetails: categoryDetails,
-      catgoryName: catgoryName,
+      categoryName: categoryName,
     });
 
     return res.status(200).json(data);
   });
 
-  app.put('/categories', async (req, res, next) => {
+  app.put('/categories', updateCategoryValidator, async (req, res, next) => {
     const { categoryId, categoryName, categoryDetails } = req.body;
 
     const data = await service.updateCategory({

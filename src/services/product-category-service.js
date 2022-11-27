@@ -25,10 +25,10 @@ class ProductCategoryService {
     return allCategories;
   }
 
-  async createCategory({ catgoryName, categoryDetails }) {
+  async createCategory({ categoryName, categoryDetails }) {
     const createdCategory = await this.repository.createProductCategory({
       categoryDetails: categoryDetails,
-      categoryName: catgoryName,
+      categoryName: categoryName,
     });
 
     if (createdCategory == null)

@@ -1,4 +1,8 @@
 const ProductService = require('../services/product-service');
+const {
+  createProductValidator,
+  updateProductValidator,
+} = require('./validations');
 
 module.exports = (app) => {
   const service = new ProductService();
@@ -17,7 +21,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.post('/products', async (req, res, next) => {
+  app.post('/products', createProductValidator, async (req, res, next) => {
     const { categoryId, productName, productDetails, productPrice } = req.body;
 
     const data = await service.createProduct({
@@ -40,7 +44,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.put('/products', async (req, res, next) => {
+  app.put('/products', updateProductValidator, async (req, res, next) => {
     const { productId, categoryId, productName, productDetails, productPrice } =
       req.body;
 
