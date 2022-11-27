@@ -10,6 +10,8 @@ async function StartServer() {
   // database Connection
   require('./database/connection');
 
+  expressApp(app);
+
   // catch all errors
   errorHandler(app);
 

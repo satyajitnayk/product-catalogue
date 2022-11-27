@@ -4,7 +4,7 @@ const {
   AuthorizationError,
   NotFoundError,
   ValidationError,
-} = require('../../utils/errors/app-errors');
+} = require('../utils/errors/app-errors');
 
 class ProductCategoryService {
   constructor() {

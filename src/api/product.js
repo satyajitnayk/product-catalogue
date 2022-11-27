@@ -3,13 +3,13 @@ const ProductService = require('../services/product-service');
 module.exports = (app) => {
   const service = new ProductService();
 
-  app.get('/', async (req, res, next) => {
+  app.get('/products', async (req, res, next) => {
     const data = await service.getProducts();
 
     return res.status(200).json(data);
   });
 
-  app.get('/:id', async (req, res, next) => {
+  app.get('/products/:id', async (req, res, next) => {
     const productId = req.params.id;
 
     const data = await service.getProduct({ productId: productId });
@@ -17,20 +17,20 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.post('/', async (req, res, next) => {
-    const { categoryId, productName, details, price } = req.body;
+  app.post('/products', async (req, res, next) => {
+    const { categoryId, productName, productDetails, productPrice } = req.body;
 
     const data = await service.createProduct({
-      category_id: categoryId,
-      details: details,
-      price: price,
-      product_name: productName,
+      categoryId: categoryId,
+      ProductDetails: productDetails,
+      ProductPrice: productPrice,
+      productName: productName,
     });
 
     return res.status(200).json(data);
   });
 
-  app.get('/category/:id', async (req, res, next) => {
+  app.get('/products/category/:id', async (req, res, next) => {
     const categoryId = req.params.id;
 
     const data = await service.getProductsByCategory({
@@ -40,13 +40,14 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.put('/', async (req, res, next) => {
-    const { productId, categoryId, productName, details, price } = req.body;
+  app.put('/products', async (req, res, next) => {
+    const { productId, categoryId, productName, productDetails, productPrice } =
+      req.body;
 
     const data = await service.updateProduct({
       categoryId: categoryId,
-      details: details,
-      price: price,
+      productDetails: productDetails,
+      productPrice: productPrice,
       productId: productId,
       productName: productName,
     });
@@ -54,7 +55,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.delete('/:id', async (req, res, next) => {
+  app.delete('/products/:id', async (req, res, next) => {
     const productId = req.params.id;
 
     const data = await service.deleteProduct({ productId: productId });
