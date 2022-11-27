@@ -4,7 +4,7 @@ const {
   AuthorizationError,
   NotFoundError,
   ValidationError,
-} = require('../../utils/errors/app-errors');
+} = require('../utils/errors/app-errors');
 
 class ProductService {
   constructor() {
@@ -30,13 +30,18 @@ class ProductService {
     return allProducts;
   }
 
-  async createProduct({ categoryId, productName, details, price }) {
+  async createProduct({
+    categoryId,
+    productName,
+    ProductDetails,
+    ProductPrice,
+  }) {
     // TODO: Validate inputs
     const productResult = await this.repository.createProduct({
       categoryId: categoryId,
       productName: productName,
-      productDetails: details,
-      productPrice: price,
+      productDetails: ProductDetails,
+      productPrice: ProductPrice,
     });
 
     if (productResult == null) throw new APIError('unable to create product');
@@ -83,13 +88,19 @@ class ProductService {
     return allProducts;
   }
 
-  async updateProduct({ productId, categoryId, productName, details, price }) {
+  async updateProduct({
+    productId,
+    categoryId,
+    productName,
+    productDetails,
+    productPrice,
+  }) {
     const updatedProduct = await this.repository.updateProduct({
       productId: productId,
       categoryId: categoryId,
       productName: productName,
-      productDetails: details,
-      productPrice: price,
+      productDetails: productDetails,
+      productPrice: productPrice,
     });
 
     if (updatedProduct == null)

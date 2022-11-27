@@ -3,13 +3,13 @@ const ProductCategoryservice = require('../services/product-category-service');
 module.exports = (app) => {
   const service = new ProductCategoryservice();
 
-  app.get('/', async (req, res, next) => {
+  app.get('/categories', async (req, res, next) => {
     const data = await service.getCategories();
 
     return res.status(200).json(data);
   });
 
-  app.get('/:id', async (req, res, next) => {
+  app.get('/categories/:id', async (req, res, next) => {
     const categoryId = req.params.id;
 
     const data = await service.getCategory({ categoryId: categoryId });
@@ -17,7 +17,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.post('/', async (req, res, next) => {
+  app.post('/categories', async (req, res, next) => {
     const { catgoryName, categoryDetails } = req.body;
 
     const data = await service.createCategory({
@@ -28,7 +28,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.put('/', async (req, res, next) => {
+  app.put('/categories', async (req, res, next) => {
     const { categoryId, categoryName, categoryDetails } = req.body;
 
     const data = await service.updateCategory({
@@ -40,7 +40,7 @@ module.exports = (app) => {
     return res.status(200).json(data);
   });
 
-  app.delete('/:id', async (req, res, next) => {
+  app.delete('/categories/:id', async (req, res, next) => {
     const categoryId = req.params.id;
 
     const data = await service.deleteCategory({ categoryId: categoryId });
